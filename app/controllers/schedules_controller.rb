@@ -10,7 +10,7 @@ class SchedulesController < ApplicationController
   def create
     @schedule = Schedule.new(params.require(:schedule).permit(:title, :schedule_start, :schedule_end, :all_day, :memo))
     if @schedule.save
-      flash[:notice] = "新規スケジュールを作成しました"
+       flash[:notice] = "新規スケジュールを作成しました"
       redirect_to("/schedules/index")
     else
       flash[:notice] = "スケジュール保存に失敗しました"

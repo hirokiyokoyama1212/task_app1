@@ -1,0 +1,45 @@
+<header>
+  <h1>Ruby on Rails スケジュール管理アプリ</h1>
+</header>
+
+<div class="main_container">
+  <div class="information">
+<h2>スケジュール一覧</h2>
+</div>
+
+<% if flash.notice %>
+  <p class="notice"><%= flash.notice %></p>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>タイトル</th>
+      <th>開始日</th>
+      <th>終了日</th>
+      <th>終日</th>
+      <th>スケジュール更新日時</th>
+      <th>確認</th>
+      <th>編集</th>
+      <th>削除</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @schedules.each do |schedule| %>
+      <tr>
+        <td><%= schedule.id %></td>
+        <td><%= schedule.title %></td>
+        <td><%= schedule.schedule_start %></td>
+        <td><%= schedule.schedule_end %></td>
+        <td><%= "○" if schedule.all_day == "1" %></td>
+        <td><%= schedule.updated_at %></td>
+        <td><%=link_to "確認", schedule%></td>
+        <td><%=link_to "更新", [:edit, schedule]%></td>
+        <td><%=link_to "削除", schedule, method: :delete%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p><%=link_to "スケジュール新規登録", "/schedules/new" %></p>

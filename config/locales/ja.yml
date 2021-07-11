@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    models:
+      schedule: スケジュール
+    attributes:
+      schedule:
+        title: タイトル
+        schedule_start: 開始日
+        schedule_end: 終了日

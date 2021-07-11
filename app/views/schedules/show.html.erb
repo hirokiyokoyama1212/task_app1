@@ -1,38 +1,36 @@
 <div class="information">
-<h2>スケジュール詳細</h2>
+  <h2>スケジュール詳細</h2>
 </div>
 <table>
-<tbody>
-
-<tr>
-<th>タイトル</th>
-<td><%= @schedule.title %></td>
-</tr>
-<tr>
-<th>開始日</th>
-<td><%= @schedule.schedule_start %></td>
-</tr>
-<tr>
-<th>終了日</th>
-<td><%= @schedule.schedule_end %></td>
-</tr>
-<tr>
-<th>終日</th>
-<td><%= @schedule.all_day %></td>
-</tr>
-<tr>
-<th>スケジュールメモ</th>
-<td><%= @schedule.memo %></td>
-</tr>
-
-</tbody>
+  <tbody>
+    <tr>
+      <th>タイトル</th>
+      <td><%= @schedule.title %></td>
+    </tr>
+    <tr>
+      <th>開始日</th>
+      <td><%= @schedule.schedule_start %></td>
+    </tr>
+    <tr>
+      <th>終了日</th>
+      <td><%= @schedule.schedule_end %></td>
+    </tr>
+    <tr>
+      <th>終日</th>
+      <td><%= @schedule.all_day %></td>
+    </tr>
+    <tr>
+      <th>スケジュールメモ</th>
+      <td><%= @schedule.memo %></td>
+    </tr>
+  </tbody>
 </table>
 
 <div>
-<ul>
-<li><%= link_to("スケジュール一覧に戻る","/") %></li>
-<li><%= link_to "スケジュールを編集する", [:edit, @schedule]%></li>
-<li><%=link_to "スケジュールを削除する", @schedule, method: :delete%></li>
-</ul>
+  <ul>
+    <li><%= link_to("スケジュール一覧に戻る","/") %></li>
+    <li><%= link_to "スケジュールを編集する", [:edit, @schedule]%></li>
+    <li><%=link_to "スケジュールを削除する", @schedule, method: :delete%></li>
+  </ul>
 </div>
 

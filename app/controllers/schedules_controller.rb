@@ -1,20 +1,23 @@
 class SchedulesController < ApplicationController
+
+
+
   def index
     @schedules = Schedule.all.order(schedule_start: "ASC")
   end
 
   def new
-    @schedule = Schedule.new    
+    @schedule = Schedule.new
   end
 
   def create
-    @schedule = Schedule.new(params.require(:schedule).permit(:title, :schedule_start, :schedule_end, :all_day, :memo))
+    @schedule = Schedule.new(schedule_params)
     if @schedule.save
-       flash[:notice] = "新規スケジュールを作成しました"
-      redirect_to("/schedules/index")
+      flash[:notice] = "新規スケジュールを作成しました"
+      redirect_to action: :index
     else
       flash[:notice] = "スケジュール保存に失敗しました"
-      render "schedules/new"
+      render :new
     end
   end
 
@@ -28,20 +31,25 @@ class SchedulesController < ApplicationController
 
   def update
     @schedule = Schedule.find(params[:id])
-    if @schedule.update(params.require(:schedule).permit(:title, :schedule_start, :schedule_end, :all_day, :memo))
+    if @schedule.update(schedule_params)
       flash[:notice] = "スケジュールを更新しました"
-      redirect_to("/")
+      redirect_to action: :index
     else
       flash[:notice] = "スケジュールの更新に失敗しました"
-      render "schedules/edit"
-    end   
+      render :edit
+    end
   end
 
   def destroy
     @schedule = Schedule.find(params[:id])
     @schedule.destroy
     flash[:notice] = "スケジュールを削除しました"
-    redirect_to("/")
+    redirect_to action: :index
+  end
+
+  private
+  def schedule_params
+    params.require(:schedule).permit(:title, :schedule_start, :schedule_end, :all_day, :memo)
   end
 
 end
